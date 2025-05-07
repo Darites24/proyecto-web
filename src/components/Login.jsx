@@ -4,7 +4,7 @@ import Dashboard from "./Dashboard";
 import { useNavigate } from "react-router-dom";
 import RegistroUsuario from "./RegistroUsuario";
 import '../styles/Login.css'; 
-import lonelyImg from "../assets/you-look-lonely.jpg";
+import rickAndMorty from "../assets/preview.jpg";
 
 export default function Login() { //Snippet rfc 
     const [email, setEmail] = useState('');
@@ -21,7 +21,7 @@ export default function Login() { //Snippet rfc
     return(
         <div className="container">  
                 <div className="container-image">
-                    <img src={lonelyImg}></img>
+                    <img src={rickAndMorty}></img>
                 </div>  
             <div className="container-container-login">
                 <div className="container-login">
