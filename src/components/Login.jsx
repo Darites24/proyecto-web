@@ -19,10 +19,12 @@ export default function Login() { //Snippet rfc
         navigate('/registro');
     }
     return(
-        <div className="container">  
-                <div className="container-image">
-                    <img src={rickAndMorty}></img>
-                </div>  
+        <div className="container">
+                
+            <div className="container-image">    
+                <img src={rickAndMorty}></img>
+            </div>     
+                
             <div className="container-container-login">
                 <div className="container-login">
                     <h1>Login</h1>

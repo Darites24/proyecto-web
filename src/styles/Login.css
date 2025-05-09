@@ -50,8 +50,8 @@ body, html {
     padding: 40px;
     border-radius: 15px; 
     text-align: center;
-    border: 2px solid;
-    border-color: purple;
+    /*border: 2px solid;
+    border-color: purple;*/
 }
 
 input {
@@ -78,3 +78,4 @@ button:hover {
     background-color: bisque;
     color: black;
 }
+
