@@ -22,21 +22,15 @@ body, html {
     justify-content: space-between;
 }
 
-.dashboard-container {
+.categoria-container {
     display: flex;
-    justify-content: space-between;
-    gap: 40px;
-    margin-top: 40px;
+    flex-direction: column;
+    align-items: center; 
+    justify-content: center; 
+    padding: 20px;
     flex-wrap: wrap;
 }
 
-.container-saldos, .container-ingresos, .container-egresos {
-    border: 1px solid black;
-    padding: 20px;
-    width: 30%;
-    box-sizing: border-box;
-    border-radius: 15px;
-}
 
 .dropdown-container {
     align-self: flex-end;
@@ -81,4 +75,10 @@ body, html {
 
 .button-icon {
     font-size: 24px;
+}
+
+.tabla-categorias {
+    width: 90%;  
+    margin: 20px auto; 
+    border-collapse: collapse;
 }

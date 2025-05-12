@@ -4,6 +4,7 @@ import Login from './components/Login';
 import './App.css'
 import Dashboard from './components/Dashboard';
 import RegistroUsuario from './components/RegistroUsuario';
+import Categorias from './components/Categorias';
 
 const App = () => {
   return (
@@ -12,6 +13,7 @@ const App = () => {
         <Route path="/" element={<Login/>}/>
         <Route path='/dashboard' element={<Dashboard/>}/>
         <Route path='/registro' element={<RegistroUsuario/>}/>
+        <Route path='/categorias' element={<Categorias/>}/>
       </Routes>
     </Router>
   );
