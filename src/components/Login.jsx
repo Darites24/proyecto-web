@@ -16,7 +16,7 @@ export default function Login() { //Snippet rfc
     }
 
     const handleRegister = () => {
-        navigate('/registro');
+        navigate('/registroUsuario');
     }
     return(
         <div className="container">

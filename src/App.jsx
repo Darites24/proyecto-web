@@ -5,6 +5,9 @@ import './App.css'
 import Dashboard from './components/Dashboard';
 import RegistroUsuario from './components/RegistroUsuario';
 import Categorias from './components/Categorias';
+import Registro from './components/Registro';
+import Listado from './components/Listado';
+import Analisis from './components/Analisis';
 
 const App = () => {
   return (
@@ -12,8 +15,11 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Login/>}/>
         <Route path='/dashboard' element={<Dashboard/>}/>
-        <Route path='/registro' element={<RegistroUsuario/>}/>
+        <Route path='/registroUsuario' element={<RegistroUsuario/>}/>
         <Route path='/categorias' element={<Categorias/>}/>
+        <Route path='/registro' element={<Registro/>}/>
+        <Route path='/listado' element={<Listado/>}/>
+        <Route path='/analisis' element={<Analisis/>}/>
       </Routes>
     </Router>
   );

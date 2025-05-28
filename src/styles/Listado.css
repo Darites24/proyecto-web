@@ -1,0 +1,74 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    font-family: Arial, Helvetica, sans-serif;
+    }
+
+.listado-container {
+    height: 100vh;
+    width: 100%;
+    box-sizing: border-box;
+    position: relative;
+}
+
+.tabla-movimientos {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.tabla-movimientos th, .tabla-movimientos td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: center;
+}
+
+.tabla-movimientos th {
+    background-color: #f2f2f2;
+}
+
+.dashboard-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 40px;
+    margin-top: 40px;
+    flex-wrap: wrap;
+}
+
+.dropdown-container {
+    align-self: flex-end;
+}
+
+.dropdown-toggle {
+    background-color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 32px;
+    padding: 5px 10px;
+    border: 15px;
+    color: black;
+}
+
+.dropdown-menu-custom li {
+    padding: 8px 10px;
+    cursor: pointer;
+    transition: background-color 0.2 ease;
+    border-top: 1px #58009b00;
+    list-style-type: none;
+}
+
+.dropdown-menu-custom li:hover {
+    background-color: antiquewhite;
+    color: black;
+}
+
+.navbar-container {
+    background-color: rgb(128, 0, 128);
+    color: white;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}

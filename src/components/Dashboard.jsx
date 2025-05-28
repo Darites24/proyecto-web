@@ -3,7 +3,6 @@ import '../styles/Dashboard.css';
 import { BsFillPersonFill } from "react-icons/bs";
 import { useState } from 'react';
 import { useNavigate} from "react-router-dom";
-import { CgAdd } from "react-icons/cg";
 
 export default function Dashboard() {
     
@@ -19,6 +18,19 @@ export default function Dashboard() {
     const handleCat = () => {
         navigate('/categorias')
     }
+
+    const handleReg = () => {
+        navigate('/registro')
+    }
+
+    const handleList = () => {
+        navigate('/listado')
+    }
+
+    const handleAnal = () => {
+        navigate('/analisis')
+    }
+
     return(
         <div className="huge-container">
             
@@ -32,9 +44,9 @@ export default function Dashboard() {
                         <ul className="dropdown-menu-custom" onMouseLeave={closeDropdown}>
                             <li onClick={closeDropdown}>Dashboard</li>
                             <li onClick={handleCat}>Categorías</li>
-                            <li onClick={closeDropdown}>Registros</li>
-                            <li onClick={closeDropdown}>Listado</li>
-                            <li onClick={closeDropdown}>Análisis</li>
+                            <li onClick={handleReg}>Registros</li>
+                            <li onClick={handleList}>Listado</li>
+                            <li onClick={handleAnal}>Análisis</li>
                             <li onClick={handleClose}>Cerrar Sesión</li>
                         </ul>
                     )}

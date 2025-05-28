@@ -27,6 +27,10 @@ export default function DashboardCategorias() {
         navigate('/dashboard');
     };
 
+    const handleReg = () => {
+        navigate('/registro')
+    }
+
     const handleEliminar = (id) => {
         const nuevasCategorias = categorias.filter(categoria => categoria.id !== id);
         setCategorias(nuevasCategorias);
@@ -45,7 +49,7 @@ export default function DashboardCategorias() {
                         <ul className="dropdown-menu-custom" onMouseLeave={closeDropdown}>
                             <li onClick={handleDashboard}>Dashboard</li>
                             <li onClick={closeDropdown}>Categorías</li>
-                            <li onClick={closeDropdown}>Registros</li>
+                            <li onClick={handleReg}>Registros</li>
                             <li onClick={closeDropdown}>Listado</li>
                             <li onClick={closeDropdown}>Análisis</li>
                             <li onClick={handleClose}>Cerrar Sesión</li>
