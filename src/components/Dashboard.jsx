@@ -3,6 +3,9 @@ import '../styles/Dashboard.css';
 import { BsFillPersonFill } from "react-icons/bs";
 import { useState } from 'react';
 import { useNavigate} from "react-router-dom";
+import axios from "axios";
+import { useEffect } from "react";
+import { API_URL } from "../config";
 
 export default function Dashboard() {
     
@@ -10,6 +13,9 @@ export default function Dashboard() {
     const toggleDropdown = () => setIsOpen(!isOpen);
     const closeDropdown = () => setIsOpen(false);
     const navigate = useNavigate();
+    const [ingresos, setIngresos] = useState(0);
+    const [egresos, setEgresos] = useState(0);
+    const saldo = ingresos - egresos;
 
     const handleClose = () => {
         navigate('/')
@@ -30,6 +36,29 @@ export default function Dashboard() {
     const handleAnal = () => {
         navigate('/analisis')
     }
+
+    useEffect(() => {
+        const fetchMovimientos = async () => {
+            try {
+                const usuarioId = localStorage.getItem("usuario_id");
+                const response = await axios.get(`{API_URL}/movimientos?usuario_id={usuarioId}`);
+                const movimientos = response.data;
+
+                const totalIngresos = movimientos.filter(m => m.tipo.toLowerCase() === 'ingreso')
+                .reduce((acc, curr) => acc + parseFloat(curr.valor), 0);
+
+                const totalEgresos = movimientos.filter(m => m.tipo.toLowerCase() === 'egreso')
+                .reduce((acc, curr) => acc + parseFloat(curr.valor), 0);
+
+                setIngresos(totalIngresos);
+                setEgresos(totalEgresos);
+            } catch (error) {
+                console.error("Error al cargar movimientos: ", error);
+            }
+        };
+
+        fetchMovimientos();
+    }, []);
 
     return(
         <div className="huge-container">
@@ -56,15 +85,15 @@ export default function Dashboard() {
             <div className="dashboard-container">
                 <div className="container-saldos">
                     <h3>Saldo Disponible</h3>
-                    <p>$1200</p>
+                    <p>${saldo}</p>
                 </div>
                 <div className="container-ingresos">
                     <h3>Ingresos Totales</h3>
-                    <p>$3500</p>
+                    <p>${ingresos}</p>
                 </div>
                 <div className="container-egresos">
                     <h3>Egresos Totales</h3>
-                    <p>$2000</p>
+                    <p>${egresos}</p>
                 </div>
                 
             </div>

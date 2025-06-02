@@ -4,16 +4,14 @@ import { BsFillPersonFill } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
 import { CgAdd } from "react-icons/cg";
 import { BsFillTrashFill } from "react-icons/bs";
+import axios from "axios";
+import { useEffect } from "react";
+import { API_URL } from "../config";
 
 export default function DashboardCategorias() {
 
     const [isOpen, setIsOpen] = useState(false);
-    const [categorias, setCategorias] = useState([
-        { id: 1, nombre: "Alimentación" },
-        { id: 2, nombre: "Transporte" },
-        { id: 3, nombre: "Educación" },
-        { id: 4, nombre: "Salud" }
-    ]);
+    const [categorias, setCategorias] = useState([]);
 
     const toggleDropdown = () => setIsOpen(!isOpen);
     const closeDropdown = () => setIsOpen(false);
@@ -31,10 +29,57 @@ export default function DashboardCategorias() {
         navigate('/registro')
     }
 
-    const handleEliminar = (id) => {
-        const nuevasCategorias = categorias.filter(categoria => categoria.id !== id);
+    const handleEliminar = async (id) => {
+    if (!window.confirm("¿Estás seguro de eliminar esta categoría?")) return;
+
+    try {
+        await axios.delete(`${API_URL}/categorias/${id}`);
+
+        const nuevasCategorias = categorias.filter(c => c.id !== id);
         setCategorias(nuevasCategorias);
+
+        alert("Categoría eliminada");
+    } catch (error) {
+        console.error("Error al eliminar categoría:", error);
+        alert("Error al eliminar la categoría");
+    }
+};
+        
+
+    const handleCrearCategoria = async () => {
+        const nombre = prompt("Escriba el nombre de la nueva categoría: ");
+        if (!nombre) return;
+
+        try {
+            const usuarioId = localStorage.getItem("usuario_id");
+            const response = await axios.post(`${API_URL}/categorias`, {
+                nombre,
+                usuario_id: usuarioId
+            });
+
+            alert("Categoría creada");
+
+            const nuevas = await axios.get(`${API_URL}/categorias?usuario_id=${usuarioId}`);
+            setCategorias(nuevas.data);
+        } catch (error) {
+            console.error("Error al crear categorias: ", error);
+            alert(error.response?.data?.mensaje||"Error al crear la categoria");
+        }
     };
+    
+    useEffect(() => {
+        const fetchCategorias = async () => {
+            try {
+                const usuarioId = localStorage.getItem("usuario_id");
+                const response = await axios.get(`${API_URL}/categorias?usuario_id=${usuarioId}`);
+                setCategorias(response.data);
+            } catch (error) {
+                console.error("Error al cargar las categorias: ", error);
+            }
+        };
+
+        fetchCategorias();
+    }, []);
 
     return (
         <div className="huge-container">
@@ -89,7 +134,7 @@ export default function DashboardCategorias() {
                     </tbody>
                 </table>
                 <div className="container-button-add">
-                    <button className="button-add">
+                    <button className="button-add" onClick={handleCrearCategoria}>
                         <CgAdd className="button-icon" /> Crear Categoría
                     </button>
                 </div>
