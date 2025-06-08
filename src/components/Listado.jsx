@@ -3,6 +3,9 @@ import "../styles/Listado.css";
 import { BsFillPersonFill } from "react-icons/bs";
 import { useState } from 'react';
 import { useNavigate} from "react-router-dom";
+import axios from "axios";
+import { useEffect } from "react";
+import { API_URL } from "../config";
 
 export default function Listado() {
     
@@ -11,11 +14,21 @@ export default function Listado() {
     const closeDropdown = () => setIsOpen(false);
     const navigate = useNavigate();
 
-    const movimientos = [
-        { tipo: "Ingreso", categoria: "Salario", valor: 2500, fecha: "2025-05-01" },
-        { tipo: "Egreso", categoria: "Comida", valor: 500, fecha: "2025-05-03" },
-        { tipo: "Egreso", categoria: "Transporte", valor: 200, fecha: "2025-05-05" },
-    ];
+    const [movimientos, setMovimientos] = useState([]);
+    
+    useEffect (() => {
+        const fetchMovimientos = async () => {
+            try {
+            const usuarioId = localStorage.getItem("usuario_id");
+            const response = await axios.get(`${API_URL}/movimientos?usuario_id=${usuarioId}`);
+            setMovimientos(response.data);
+            } catch (error) {
+            console.error("Error al cargar movimientos: ", error);
+            }
+        };
+
+        fetchMovimientos();
+    }, []);
 
     const handleClose = () => {
         navigate('/')

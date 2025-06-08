@@ -18,16 +18,25 @@ export default function DashboardCategorias() {
     const navigate = useNavigate();
 
     const handleClose = () => {
-        navigate('/');
-    };
-
+        navigate('/')
+    }
+    
     const handleDashboard = () => {
-        navigate('/dashboard');
-    };
+        navigate('/dashboard')
+    }
 
     const handleReg = () => {
         navigate('/registro')
     }
+
+    const handleList = () => {
+        navigate('/listado')
+    }
+
+    const handleAnal = () => {
+        navigate('/analisis')
+    }
+
 
     const handleEliminar = async (id) => {
     if (!window.confirm("¿Estás seguro de eliminar esta categoría?")) return;
@@ -95,8 +104,8 @@ export default function DashboardCategorias() {
                             <li onClick={handleDashboard}>Dashboard</li>
                             <li onClick={closeDropdown}>Categorías</li>
                             <li onClick={handleReg}>Registros</li>
-                            <li onClick={closeDropdown}>Listado</li>
-                            <li onClick={closeDropdown}>Análisis</li>
+                            <li onClick={handleList}>Listado</li>
+                            <li onClick={handleAnal}>Análisis</li>
                             <li onClick={handleClose}>Cerrar Sesión</li>
                         </ul>
                     )}

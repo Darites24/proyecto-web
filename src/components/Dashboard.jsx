@@ -41,7 +41,7 @@ export default function Dashboard() {
         const fetchMovimientos = async () => {
             try {
                 const usuarioId = localStorage.getItem("usuario_id");
-                const response = await axios.get(`{API_URL}/movimientos?usuario_id={usuarioId}`);
+                const response = await axios.get(`${API_URL}/movimientos?usuario_id=${usuarioId}`);
                 const movimientos = response.data;
 
                 const totalIngresos = movimientos.filter(m => m.tipo.toLowerCase() === 'ingreso')
